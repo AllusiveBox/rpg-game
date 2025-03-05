@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+    "target": "es2022",
+    "module": "commonjs",
+    "rootDir": "./",
+    "moduleResolution": "node",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "noImplicitOverride": true
+  },
+  "include": [
+    ".src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".test",
+    "docs"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "rpg-ame",
+  "version": "1.0.0",
+  "description": "API For an RPG game using Azure Functions for Web Server",
+  "main": "./dist/.src/main.js",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "watch": "tsc -w",
+    "clean": "rimraf ./dist",
+    "prestart": "npm run build && func extensions install",
+    "start:host": "func start",
+    "start": "npm-run-all --parallel start:host watch",
+    "init:db": "npm run build && node dist/.src/db/scripts/init.db.js"
+  },
+  "dependencies": {
+    "@allusivebox/core": "^0.5.1",
+    "@azure/functions": "^4.6.1",
+    "common-tags": "^1.8.2",
+    "dayjs": "^1.11.13",
+    "npm-run-all": "^4.1.5",
+    "pg": "^8.13.3",
+    "require-all": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/common-tags": "^1.8.4",
+    "@types/node": "^22.13.4",
+    "@types/pg": "^8.11.11",
+    "@types/require-all": "^3.0.6",
+    "rimraf": "^5.0.10",
+    "typescript": "^5.7.3"
+  }
+}
