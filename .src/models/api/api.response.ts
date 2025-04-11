@@ -232,8 +232,9 @@ export class ApiResponse<T extends object = EmptyObject> {
     public toJSON(): IResponse<T> {
         let init: IResponse<T> = {
             status: this.#status,
-            headers: this.#headers
+            headers: this.#headers,
         };
+
         if (
             isNonEmptyObject(this.#data)
             && "body" in this.#data
@@ -242,6 +243,9 @@ export class ApiResponse<T extends object = EmptyObject> {
         } else if (isNonEmptyObject(this.#data)) {
             init["jsonBody"] = this.#data;
         }
+
+        init["errors"] = this.#errors;
+        init["warnings"] = this.#warnings;
 
         return init;
     }
@@ -272,6 +276,18 @@ export class ApiResponse<T extends object = EmptyObject> {
 
     /**
      *
+     * Sets the response to Status Code `404` and reason to `Not Found`.
+     *
+     * @returns {IResponse<T>}
+     * @template {object} T
+     *
+     */
+    public notFound(): IResponse<T> {
+        return this.failed("Not Found", 404);
+    }
+
+    /**
+     *
      * Sets the response to Status Code `500` and reason to `Internal Server Error`.
      *
      * @returns {IResponse<T>}
@@ -280,6 +296,42 @@ export class ApiResponse<T extends object = EmptyObject> {
      */
     public internalServerError(): IResponse<T> {
         return this.failed("Internal Server Error", 500);
+    }
+
+    /**
+     *
+     * Sets the response to Status Code `501` and reason to `Not Implemented`.
+     *
+     * @returns {IResponse<T>}
+     * @template {object} T
+     *
+     */
+    public notImplemented(): IResponse<T> {
+        return this.failed("Not Implemented", 501);
+    }
+
+    /**
+     *
+     * Sets the response to Status Code `503` and reason to `Service Unavailable`.
+     *
+     * @returns {IResponse<T>}
+     * @template {object} T
+     *
+     */
+    public serviceUnavailable(): IResponse<T> {
+        return this.failed("Service Unavailable", 503);
+    }
+
+    /**
+     *
+     * Sets the response to Status Code `529` and reason to `Proxy Request Failed`.
+     *
+     * @returns {IResponse<T>}
+     * @template {object} T
+     *
+     */
+    public proxyRequestFailed(): IResponse<T> {
+        return this.failed("Proxy Request Failed", 529);
     }
 
     get errors(): ReadonlyArray<string> {

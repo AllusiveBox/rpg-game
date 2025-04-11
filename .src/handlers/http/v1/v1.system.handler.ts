@@ -18,7 +18,7 @@ export class V1SystemHandler extends V1HandlerBase<V1SystemController> {
     getLogger(
         context: InvocationContext
     ): LoggerService {
-        return  new LoggerService("System", context);
+        return new LoggerService("System", context);
     }
 
     async health(

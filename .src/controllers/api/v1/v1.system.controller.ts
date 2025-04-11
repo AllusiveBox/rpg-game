@@ -38,10 +38,7 @@ export class V1SystemController extends V1ControllerBase {
      */
     async health(): Promise<IResponse<{ body: string }>> {
         return new ApiResponse<{ body: string }>()
-            .data(
-                "body",
-                "OK"
-            )
+            .data("body", "OK")
             .ok();
     }
 

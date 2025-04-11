@@ -51,7 +51,7 @@ export abstract class V1HandlerBase<TController extends V1ControllerBase> {
         logger.debug("Processing JSON response...");
         logger.debug(`Ensuring Headers have "content-type" of "${ContentTypes.ApplicationJson}"...`);
 
-        if (!init.headers["content-type"].includes(ContentTypes.ApplicationJson)) {
+        if (!init.headers["content-type"]?.includes(ContentTypes.ApplicationJson)) {
             init.headers["content-type"] = ContentTypes.ApplicationJson;
         }
 
@@ -264,6 +264,7 @@ export abstract class V1HandlerBase<TController extends V1ControllerBase> {
             response = bufferRes.internalServerError();
         }
 
+        logger.info("Response", response);
         return this.parseResponse(logger, response);
     }
 
